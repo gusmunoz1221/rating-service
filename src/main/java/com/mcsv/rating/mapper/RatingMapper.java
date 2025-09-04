@@ -3,6 +3,7 @@ package com.mcsv.rating.mapper;
 import com.mcsv.rating.entity.RatingEntity;
 import com.mcsv.rating.response.RatingDtoRequest;
 import com.mcsv.rating.response.RatingDtoResponse;
+import com.mcsv.rating.response.RatingModifyRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,10 +18,15 @@ public class RatingMapper {
     }
     public RatingDtoResponse ratingEntityToRatingDto(RatingEntity rating){
         return RatingDtoResponse.builder()
+                .id(rating.getId())
                 .rating(rating.getRating())
                 .observations(rating.getObservations())
                 .hotelId(rating.getHotelId())
                 .userId(rating.getUserId())
                 .build();
+    }
+    public void ratingModifyToEntity(RatingModifyRequest ratingModifyRequest, RatingEntity rating){
+     rating.setRating(ratingModifyRequest.getRating());
+     rating.setObservations(rating.getObservations());
     }
 }

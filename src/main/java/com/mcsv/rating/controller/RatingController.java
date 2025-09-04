@@ -2,6 +2,7 @@ package com.mcsv.rating.controller;
 
 import com.mcsv.rating.response.RatingDtoRequest;
 import com.mcsv.rating.response.RatingDtoResponse;
+import com.mcsv.rating.response.RatingModifyRequest;
 import com.mcsv.rating.service.RatingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,17 @@ public class RatingController {
 
     @GetMapping("/hotels/{hotelId}")
     public ResponseEntity<List<RatingDtoResponse>> getHotelRatings(@PathVariable String hotelId){
-        return ResponseEntity.ok(ratingService.getyHotelRatings(hotelId));
+        return ResponseEntity.ok(ratingService.getHotelRatings(hotelId));
+    }
+
+    @PutMapping("/{ratingId}")
+    public ResponseEntity<RatingDtoResponse> updateRating(@PathVariable String ratingId, @RequestBody RatingModifyRequest ratingModifyRequest){
+        return ResponseEntity.ok(ratingService.updateRating(ratingId,ratingModifyRequest));
+    }
+
+    @DeleteMapping("/{ratingId}")
+    public ResponseEntity<Void> deleteRating(@PathVariable String ratingId){
+        ratingService.deleteRating(ratingId);
+        return ResponseEntity.noContent().build();
     }
 }

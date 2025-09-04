@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RatingDtoResponse {
-    private String id;
+public class RatingModifyRequest {
     private int rating;
     private String observations;
-    private String userId;
-    private String hotelId;
-
 }
